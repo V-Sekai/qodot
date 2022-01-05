@@ -135,7 +135,7 @@ int LMMapData::map_data_register_texture(const char *name) {
 
 	textures = (LMTextureData *)realloc(textures, (texture_count + 1) * sizeof(LMTextureData));
 	LMTextureData *texture = &textures[texture_count];
-	*texture = (LMTextureData){ 0 };
+	*texture = (LMTextureData){ 0, 0 };
 	texture->name = STRDUP(name);
 	texture_count++;
 	return texture_count - 1;

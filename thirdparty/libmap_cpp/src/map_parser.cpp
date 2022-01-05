@@ -14,7 +14,7 @@
 #define DEBUG false
 
 void LMMapParser::reset_current_face() {
-	current_face = (face){ 0 };
+	current_face = (face){ 0, 0, 0, 0 };
 }
 
 void LMMapParser::reset_current_brush() {

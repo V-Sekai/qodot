@@ -28,9 +28,6 @@ int sort_vertices_by_winding(const void *lhs_in, const void *rhs_in) {
 	const vec3 *lhs = (const vec3 *)lhs_in;
 	const vec3 *rhs = (const vec3 *)rhs_in;
 
-	face *face_inst = &sort_map_data->entities[wind_entity_idx].brushes[wind_brush_idx].faces[wind_face_idx];
-	LMFaceGeometry *face_geo_inst = &sort_map_data->entity_geo[wind_entity_idx].brushes[wind_brush_idx].faces[wind_face_idx];
-
 	vec3 u = vec3_normalize(wind_face_basis);
 	vec3 v = vec3_normalize(vec3_cross(u, wind_face_normal));
 
@@ -134,7 +131,7 @@ void LMGeoGenerator::geo_generator_run() {
 				wind_face_idx = f;
 
 				wind_face_basis = vec3_sub(face_geo_inst->vertices[1].vertex, face_geo_inst->vertices[0].vertex);
-				wind_face_center = (vec3){ 0 };
+				wind_face_center = (vec3){ 0, 0, 0 };
 				wind_face_normal = face_inst->plane_normal;
 
 				for (int v = 0; v < face_geo_inst->vertex_count; ++v) {
@@ -184,7 +181,7 @@ void LMGeoGenerator::generate_brush_vertices(int entity_idx, int brush_idx) {
 	for (int f0 = 0; f0 < brush_inst->face_count; ++f0) {
 		for (int f1 = 0; f1 < brush_inst->face_count; ++f1) {
 			for (int f2 = 0; f2 < brush_inst->face_count; ++f2) {
-				vec3 vertex = (vec3){ 0 };
+				vec3 vertex = (vec3){ 0, 0, 0};
 				if (intersect_faces(brush_inst->faces[f0], brush_inst->faces[f1], brush_inst->faces[f2], &vertex)) {
 					if (vertex_in_hull(brush_inst->faces, brush_inst->face_count, vertex)) {
 						face *face_inst = &map_data->entities[entity_idx].brushes[brush_idx].faces[f0];
