@@ -35,8 +35,6 @@ void LMSurfaceGatherer::surface_gatherer_set_worldspawn_layer_filter(bool filter
 }
 
 bool LMSurfaceGatherer::surface_gatherer_filter_entity(int entity_idx) {
-	const LMEntity *ents = map_data->map_data_get_entities();
-
 	// Omit filtered entity indices
 	if (entity_filter_idx != -1 && entity_idx != entity_filter_idx) {
 		return true;
