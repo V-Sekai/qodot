@@ -204,7 +204,7 @@ const LMSurfaces *LMSurfaceGatherer::surface_gatherer_fetch() {
 LMSurface *LMSurfaceGatherer::surface_gatherer_add_surface() {
 	out_surfaces.surfaces = (LMSurface *)realloc(out_surfaces.surfaces, (out_surfaces.surface_count + 1) * sizeof(LMSurface));
 	LMSurface *surf_inst = &out_surfaces.surfaces[out_surfaces.surface_count];
-	*surf_inst = (LMSurface){ 0 };
+	memset(surf_inst, 0, sizeof(*surf_inst));
 	out_surfaces.surface_count++;
 
 	return surf_inst;

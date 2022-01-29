@@ -58,7 +58,7 @@ void LMGeoGenerator::geo_generator_run() {
 		LMEntity *ent_inst = &map_data->entities[e];
 
 		LMEntityGeometry *entity_geo_inst = &map_data->entity_geo[e];
-		*entity_geo_inst = (LMEntityGeometry){ 0 };
+		memset(entity_geo_inst, 0, sizeof(*entity_geo_inst));
 
 		entity_geo_inst->brushes = (LMBrushGeometry *)malloc(ent_inst->brush_count * sizeof(LMBrushGeometry));
 
@@ -66,24 +66,24 @@ void LMGeoGenerator::geo_generator_run() {
 			LMBrush *brush_inst = &ent_inst->brushes[b];
 
 			LMBrushGeometry *brush_geo_inst = &entity_geo_inst->brushes[b];
-			*brush_geo_inst = (LMBrushGeometry){ 0 };
+			memset(brush_geo_inst, 0, sizeof(*brush_geo_inst));
 
 			brush_geo_inst->faces = (LMFaceGeometry *)malloc(brush_inst->face_count * sizeof(LMFaceGeometry));
 
 			for (int f = 0; f < brush_inst->face_count; ++f) {
 				LMFaceGeometry *face_geo_inst = &brush_geo_inst->faces[f];
-				*face_geo_inst = (LMFaceGeometry){ 0 };
+				memset(face_geo_inst, 0, sizeof(*face_geo_inst));
 			}
 		}
 	}
 
 	for (int e = 0; e < map_data->entity_count; ++e) {
 		LMEntity *ent_inst = &map_data->entities[e];
-		ent_inst->center = (vec3){ 0.0, 0.0, 0.0 };
+		ent_inst->center = { 0.0, 0.0, 0.0 };
 
 		for (int b = 0; b < ent_inst->brush_count; ++b) {
 			LMBrush *brush_inst = &ent_inst->brushes[b];
-			brush_inst->center = (vec3){ 0.0, 0.0, 0.0 };
+			brush_inst->center = { 0.0, 0.0, 0.0 };
 			int vert_count = 0;
 
 			generate_brush_vertices(e, b);
@@ -131,7 +131,7 @@ void LMGeoGenerator::geo_generator_run() {
 				wind_face_idx = f;
 
 				wind_face_basis = vec3_sub(face_geo_inst->vertices[1].vertex, face_geo_inst->vertices[0].vertex);
-				wind_face_center = (vec3){ 0, 0, 0 };
+				wind_face_center = { 0, 0, 0};
 				wind_face_normal = face_inst->plane_normal;
 
 				for (int v = 0; v < face_geo_inst->vertex_count; ++v) {
@@ -181,7 +181,7 @@ void LMGeoGenerator::generate_brush_vertices(int entity_idx, int brush_idx) {
 	for (int f0 = 0; f0 < brush_inst->face_count; ++f0) {
 		for (int f1 = 0; f1 < brush_inst->face_count; ++f1) {
 			for (int f2 = 0; f2 < brush_inst->face_count; ++f2) {
-				vec3 vertex = (vec3){ 0, 0, 0};
+				vec3 vertex = { 0, 0, 0};
 				if (intersect_faces(brush_inst->faces[f0], brush_inst->faces[f1], brush_inst->faces[f2], &vertex)) {
 					if (vertex_in_hull(brush_inst->faces, brush_inst->face_count, vertex)) {
 						face *face_inst = &map_data->entities[entity_idx].brushes[brush_idx].faces[f0];
@@ -246,7 +246,7 @@ void LMGeoGenerator::generate_brush_vertices(int entity_idx, int brush_idx) {
 						if (unique_vertex) {
 							face_geo_inst->vertex_count++;
 							face_geo_inst->vertices = (LMFaceVertex *)realloc(face_geo_inst->vertices, face_geo_inst->vertex_count * sizeof(LMFaceVertex));
-							face_geo_inst->vertices[face_geo_inst->vertex_count - 1] = (LMFaceVertex){ vertex, normal, uv, tangent };
+							face_geo_inst->vertices[face_geo_inst->vertex_count - 1] = { vertex, normal, uv, tangent };
 						} else if (phong) {
 							face_geo_inst->vertices[duplicate_index].normal = vec3_add(face_geo_inst->vertices[duplicate_index].normal, normal);
 						}
@@ -317,11 +317,11 @@ LMVertexUV LMGeoGenerator::get_standard_uv(vec3 vertex, const face *face, int te
 	double df = fabs(vec3_dot(face->plane_normal, FORWARD_VECTOR));
 
 	if (du >= dr && du >= df) {
-		uv_out = (LMVertexUV){ vertex.x, -vertex.y };
+		uv_out = { vertex.x, -vertex.y };
 	} else if (dr >= du && dr >= df) {
-		uv_out = (LMVertexUV){ vertex.x, -vertex.z };
+		uv_out = { vertex.x, -vertex.z };
 	} else if (df >= du && df >= dr) {
-		uv_out = (LMVertexUV){ vertex.y, -vertex.z };
+		uv_out = { vertex.y, -vertex.z };
 	}
 
 	LMVertexUV rotated;

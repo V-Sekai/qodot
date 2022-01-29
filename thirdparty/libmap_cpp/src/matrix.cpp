@@ -40,7 +40,7 @@ mat4 rotation_matrix(vec3 axis, double angle) {
 	double w2 = axis.z * axis.z;
 	double L = u2 + v2 + w2;
 
-	return (mat4){
+	return {
 		{ (u2 + (v2 + w2) * cos(angle)) / L, (axis.x * axis.y * (1.0 - cos(angle)) - axis.z * sqrt(L) * sin(angle)) / L, (axis.x * axis.z * (1 - cos(angle)) + axis.y * sqrt(L) * sin(angle)) / L, 0,
 				(axis.x * axis.y * (1 - cos(angle)) + axis.z * sqrt(L) * sin(angle)) / L, (v2 + (u2 + w2) * cos(angle)) / L, (axis.y * axis.z * (1 - cos(angle)) - axis.x * sqrt(L) * sin(angle)) / L, 0,
 				(axis.x * axis.z * (1 - cos(angle)) - axis.y * sqrt(L) * sin(angle)) / L, (axis.y * axis.z * (1 - cos(angle)) + axis.x * sqrt(L) * sin(angle)) / L, (w2 + (u2 + v2) * cos(angle)) / L, 0,
@@ -67,7 +67,7 @@ mat4 projection_matrix(double fovy_degrees, double aspect, double z_near, double
 
 	double cotangent = (double)(cos(radians) / sine);
 
-	return (mat4){
+	return {
 		{ cotangent / aspect, 0, 0, 0,
 				0, cotangent, 0, 0,
 				0, 0, -(z_far + z_near) / delta_z, 1,

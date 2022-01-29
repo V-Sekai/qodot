@@ -10,7 +10,7 @@ bool vec3_equals(vec3 lhs, vec3 rhs) {
 }
 
 vec3 vec3_add(vec3 lhs, vec3 rhs) {
-	return (vec3){
+	return {
 		lhs.x + rhs.x,
 		lhs.y + rhs.y,
 		lhs.z + rhs.z
@@ -18,7 +18,7 @@ vec3 vec3_add(vec3 lhs, vec3 rhs) {
 }
 
 vec3 vec3_sub(vec3 lhs, vec3 rhs) {
-	return (vec3){
+	return {
 		lhs.x - rhs.x,
 		lhs.y - rhs.y,
 		lhs.z - rhs.z
@@ -26,7 +26,7 @@ vec3 vec3_sub(vec3 lhs, vec3 rhs) {
 }
 
 vec3 vec3_mul(vec3 lhs, vec3 rhs) {
-	return (vec3){
+	return {
 		lhs.x * rhs.x,
 		lhs.y * rhs.y,
 		lhs.z * rhs.z
@@ -34,7 +34,7 @@ vec3 vec3_mul(vec3 lhs, vec3 rhs) {
 }
 
 vec3 vec3_div(vec3 lhs, vec3 rhs) {
-	return (vec3){
+	return {
 		lhs.x / rhs.x,
 		lhs.y / rhs.y,
 		lhs.z / rhs.z
@@ -59,7 +59,7 @@ double vec3_dot(vec3 lhs, vec3 rhs) {
 }
 
 vec3 vec3_cross(vec3 lhs, vec3 rhs) {
-	return (vec3){
+	return {
 		lhs.y * rhs.z - lhs.z * rhs.y,
 		lhs.z * rhs.x - lhs.x * rhs.z,
 		lhs.x * rhs.y - lhs.y * rhs.x,
