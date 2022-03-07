@@ -58,7 +58,7 @@ void LMGeoGenerator::geo_generator_run() {
 		LMEntity *ent_inst = &map_data->entities[e];
 
 		LMEntityGeometry *entity_geo_inst = &map_data->entity_geo[e];
-		memset(entity_geo_inst, 0, sizeof(*entity_geo_inst));
+		*entity_geo_inst = {};
 
 		entity_geo_inst->brushes = (LMBrushGeometry *)malloc(ent_inst->brush_count * sizeof(LMBrushGeometry));
 
@@ -66,13 +66,13 @@ void LMGeoGenerator::geo_generator_run() {
 			LMBrush *brush_inst = &ent_inst->brushes[b];
 
 			LMBrushGeometry *brush_geo_inst = &entity_geo_inst->brushes[b];
-			memset(brush_geo_inst, 0, sizeof(*brush_geo_inst));
+			*brush_geo_inst = {};
 
 			brush_geo_inst->faces = (LMFaceGeometry *)malloc(brush_inst->face_count * sizeof(LMFaceGeometry));
 
 			for (int f = 0; f < brush_inst->face_count; ++f) {
 				LMFaceGeometry *face_geo_inst = &brush_geo_inst->faces[f];
-				memset(face_geo_inst, 0, sizeof(*face_geo_inst));
+				*face_geo_inst = {};
 			}
 		}
 	}
