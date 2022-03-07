@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="Qodot" inherits="RefCounted" version="4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="fetch_surfaces">
+			<return type="Array" />
+			<argument index="0" name="inverse_scale_factor" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="gather_entity_concave_collision_surfaces">
+			<return type="void" />
+			<argument index="0" name="entity_idx" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="gather_entity_convex_collision_surfaces">
+			<return type="void" />
+			<argument index="0" name="entity_idx" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="gather_texture_surfaces">
+			<return type="void" />
+			<argument index="0" name="texture_name" type="String" />
+			<argument index="1" name="brush_filter_texture" type="String" />
+			<argument index="2" name="face_filter_texture" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="gather_worldspawn_layer_collision_surfaces">
+			<return type="void" />
+			<argument index="0" name="entity_idx" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="gather_worldspawn_layer_surfaces">
+			<return type="void" />
+			<argument index="0" name="texture_name" type="String" />
+			<argument index="1" name="brush_filter_texture" type="String" />
+			<argument index="2" name="face_filter_texture" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="generate_geometry">
+			<return type="void" />
+			<argument index="0" name="texture_size_dict" type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="get_entity_dicts">
+			<return type="Array" />
+			<description>
+			</description>
+		</method>
+		<method name="get_texture_list">
+			<return type="PackedStringArray" />
+			<description>
+			</description>
+		</method>
+		<method name="get_worldspawn_layer_dicts">
+			<return type="Array" />
+			<description>
+			</description>
+		</method>
+		<method name="load_map">
+			<return type="void" />
+			<argument index="0" name="map_file" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="set_entity_definitions">
+			<return type="void" />
+			<argument index="0" name="entity_defs" type="Dictionary" />
+			<description>
+			</description>
+		</method>
+		<method name="set_worldspawn_layers">
+			<return type="void" />
+			<argument index="0" name="worldspawn_layers" type="Array" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>
